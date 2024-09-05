@@ -97,7 +97,8 @@
             id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             email VARCHAR(50) NOT NULL,
             password VARCHAR(255) NOT NULL,
-            display_name VARCHAR(64) NOT NULL
+            display_name VARCHAR(64) NOT NULL,
+            CONSTRAINT unique_user UNIQUE (email, display_name)
         )");
 
         // Create composite index which works faster when searching email of display name
