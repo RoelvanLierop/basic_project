@@ -8,26 +8,32 @@ Basic project to show some vanilla skills.This project is a showcase for some va
 * Create a database
 * run /install.php
 
-The installer will create the database tables, indexes, and fille the messages table with information. All the messages are bound to the first user that is created.
+The installer will create the database tables, indexes, and fill the messages table with 50 random messages. All the messages are bound to the first user that is created.
 
 ## Related task information
 ### User registration system
 * Create a registration form with fields for display name, email address and password.
+
     * Open the home page and click "Register" on the login form.
 
 * implement server-side validation with checks on display name, email address and password.
 
-    * Fill in the register form with faulty information. A front-end check will be done on the user input, after providing information that passes the front-end validation, the back-end (user Object) will take over and will check the information based on a RegEX.
+    * Fill in the register form with faulty information. A front-end check will be done on the user input, after providing information that passes the front-end validation, the back-end (user Object) will take over and will check the information again based on a RegEX.
 
 * Save the user information safely in a database table.
 
-    * After validation is done, user information is saved in the database.
+    * After validation is done, user information is saved in the database, and you will be transferred to the Dashboard.
+
 ### Authentication
 * Develop a login system where users can authenticate themselves with their user name and chosen password.
 
-    * Open the  home page and provide a registered user name and password. These will log you in and take you to the dashboard. When registering, this process is automated and will log you in once validation is done.
+    * Open the home page and provide a registered user name and password. These will log you in and take you to the dashboard. When registering, this process is automated and will log you in once validation is done.
+    * Validation is done each time a page is loaded which requires a logged in user. Otherwise you will be redirected to the login page.
 
 * Implement a session to check the state of a user over various pages.
+
+    * Validation is done each time a page is loaded which requires a logged in user. Otherwise you will be redirected to the login page.
+
 ### Dynamic content
 * Create a page that shows contents from the database. (a list of users and/or messages).
 
@@ -53,4 +59,4 @@ The installer will create the database tables, indexes, and fille the messages t
 
     * All input data is checked with trim() and htmlspecialchars(). This is enough to prevent basic XSS and SQL Injection scripts. I intended to use filter_var but this is becoming more and more depricated since PHP 8.2.
 
-    * Output is sanitized after running the Database query
+    * Output is sanitized after running the Database query.
