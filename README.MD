@@ -67,6 +67,22 @@ This project was created as an assignment to show my skills in "vanilla" or "pla
 
     * Output is sanitized after running the Database query, in the same manner as input is sanitized.
 
+## fun Stuff
+
+Some small did-you-know's about this project
+
+* It cost me approx 18Hrs to build this, divided over 3 days, not including documentation.
+* ChatGPT was used to create an array. Because I needed some "dumb" data, I decided that it was a computer's job to generate it for me. So I let ChatGPT create a dictionary of words to use for the seeding of messages.
+* I love music, every character I put on screen was done while listening to music.
+* My database skills were used while creating the database tables. Getting a fairly simple requirement from the assignment, made me think about the indexing and uniqueness of data in the database. 
+* This project did not need to be single-page, but we created the project like that anyway.
+* There is some inline PHP used? The most ancient version of creating server-side code, hated by many and most of the time a reason to remove a project entirely.
+* I considered using VueJS but didn't want 90% of my development time being peeking at documentation?
+* PHPDoc blocks are implemented in all classes and helper methods?
+* Every single line of code in this project was typed, not copied from the internet (Because what's the fun in that?).
+* Visual Studio Code was used to make this. I love myself some PHPStorm, but since I do not own a license, I used the free version of VSC.
+* All pushes to GIT were typed in terminal as well? Even though Visual Studio Code can do it, I wanted this project to have the most barebone mindset I could come up with.
+
 ## More stuff to do
 There is always more to do. that's why I created a list of thing I would like to have in this project.
 
