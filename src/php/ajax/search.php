@@ -9,12 +9,15 @@
         $data->{$sKey} = htmlspecialchars( trim( $mValue ) );
     }
 
+    $returnString = '';
     if( $data->type === 'user' ) {
         include( '../classes/user.php' );
         $user = new User();
         $result = $user->get( $data );
         if( is_string( $result ) ) {
-            echo '<div class="border-border-secondary p-1 row"><div class="col-12">' . $result . '</div></div>';
+            $returnString .= '<div class="border-border-secondary p-1 row">';
+            $returnString .= '<div class="col-12">' . $result . '</div>';
+            $returnString .= '</div>';
         } else {
             $returnString = '';
             foreach( $result as $i => $user){
@@ -24,14 +27,15 @@
                 $returnString .= '<div class="col-6">' . str_replace($data->data, '<span class="fw-bold text-success">' .$data->data. '</span>', $user['email']) . '</div>';
                 $returnString .= '</div>';
             }
-            echo $returnString;
         }
     } else if( $data->type === 'message' ) {
         include( '../classes/message.php' );
         $message = new Message();
         $result = $message->get( $data );
         if( is_string( $result ) ) {
-            echo '<div class="border-border-secondary p-1 row"><div class="col-12">' . $result . '</div></div>';
+            $returnString .= '<div class="border border-secondary p-1 border rounded mt-3 p-3">';
+            $returnString .= '<div class="col-12">' . $result . '</div>';
+            $returnString .= '</div>';
         } else {
             $returnString = '';
             foreach( $result as $i => $message){
@@ -40,6 +44,6 @@
                 $returnString .= '<div class="col-12">' . str_replace($data->data, '<span class="fw-bold text-success">' .$data->data. '</span>', $message['message']) . '</div>';
                 $returnString .= '</div>';
             }
-            echo $returnString;
         }
     }
+    echo $returnString;

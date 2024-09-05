@@ -2,6 +2,7 @@
     session_start();
     include( '../php/classes/csrf.php' );
 ?>
+
 <div class="col-12 col-md-4 bg-dark rounded text-white p-3">
     <h3>Register new user</h3>
     <form id="register_form" method="POST" action="index.php" enctype="" class="needs-validation" novalidate>

@@ -5,6 +5,11 @@
     include( '../php/classes/user.php' );
     include( '../php/classes/message.php' );
     $user = new User();
+    if( !$user->validate() )
+    {
+        echo '';
+        exit;
+    }
     $message = new Message();
 ?>
 

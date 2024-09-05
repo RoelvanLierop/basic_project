@@ -3,10 +3,18 @@
     define( 'ABSPATH', dirname( __FILE__, 2 ) . '/' );
     include( '../php/helpers/config.php' );
     include( '../php/classes/message.php' );
+    include( '../php/classes/user.php' );
+    $user = new User();
+    if( !$user->validate() )
+    {
+        echo '';
+        exit;
+    }
     $messages = new Message();
     $messagesCount = $messages->getMessageCount();
     $messages = $messages->get();
 ?>
+
 <div class="container-fluid">
     <div class="row bg-secondary">
         <div class="col-10 offset-1 py-2">
@@ -22,7 +30,7 @@
                 <h3>Messages</h3>
                 <div class="bg-primary rounded p-3 px-2 row mx-0" id="search_header">
                     <div class="col-9"><input type=text class="form-control px-1 rounded-0" id="search_data" placeholder="Display name or Message" /></div>
-                    <div class="col-3 text-white text-end" id="message_count_box">Result: <span id="message_count"><?= $messagesCount ?></span></div>
+                    <div class="col-3 text-white text-end" id="count_box">Result: <span id="count_text"><?= $messagesCount ?></span></div>
                 </div>
                 <div id="resultbox">
                     <?php foreach( $messages as $i => $message): ?>

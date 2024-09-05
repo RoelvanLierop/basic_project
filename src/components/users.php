@@ -4,8 +4,15 @@
     include( '../php/helpers/config.php' );
     include( '../php/classes/user.php' );
     $user = new User();
+    if( !$user->validate() )
+    {
+        echo '';
+        exit;
+    }
     $users = $user->get();
+    $usersCount = $user->getUserCount();
 ?>
+
 <div class="container-fluid">
     <div class="row bg-secondary">
         <div class="col-10 offset-1 py-2">
@@ -21,7 +28,8 @@
                 <h3>Users</h3>
                 <div class="bg-primary rounded-top p-3 px-2 row mx-0" id="search_header">
                     <div class="ps-1 col-1"><input type=text class="form-control px-1 rounded-0" id="search_id" placeholder="id" /></div>
-                    <div class="ps-1 col-11"><input type=text class="form-control px-1 rounded-0" id="search_data" placeholder="Display name or Email" /></div>
+                    <div class="ps-1 col-8"><input type=text class="form-control px-1 rounded-0" id="search_data" placeholder="Display name or Email" /></div>
+                    <div class="col-3 text-white text-end" id="count_box">Result: <span id="count_text"><?= $usersCount ?></span></div>
                 </div>
                 <div id="resultbox" class="border border-primary border-top-0 rounded-bottom p-2 py-1">
                     <?php foreach( $users as $i => $user): ?>

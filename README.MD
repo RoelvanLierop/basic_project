@@ -51,4 +51,6 @@ The installer will create the database tables, indexes, and fille the messages t
 
 * Sanitize and validate all user input and output.
 
-    * All input data is checked with trim() and htmlspecialchars(). This is enough to prevent basic XSS and SQL Injection scripts. I intended to use filter_var but this is becoming more and more depricated since PHP 8.2
+    * All input data is checked with trim() and htmlspecialchars(). This is enough to prevent basic XSS and SQL Injection scripts. I intended to use filter_var but this is becoming more and more depricated since PHP 8.2.
+
+    * Output is sanitized after running the Database query

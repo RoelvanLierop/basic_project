@@ -1,5 +1,4 @@
 // Example starter JavaScript for disabling form submissions if there are invalid fields
-
 let reloadFormValidation = function(){
   // Fetch all the forms we want to apply custom Bootstrap validation styles to
   var forms = document.querySelectorAll('.needs-validation')
@@ -18,14 +17,23 @@ let reloadFormValidation = function(){
   });
 }
 
-function loadComponent( componentName, pageTitle ) {
+// Component loader
+function loadComponent( componentName, pageTitle ){
   let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("app").innerHTML = this.responseText;
-      window["pg_"+componentName]();
-      document.title = pageTitle;
-      window.history.pushState({"html":this.responseText,"pageTitle":pageTitle}, "");
+      console.log( this.responseText.length );
+      if( this.responseText.length > 0 )
+      {
+        document.getElementById("app").innerHTML = this.responseText;
+        window["pg_"+componentName]();
+        document.title = pageTitle;
+        window.history.pushState({"html":this.responseText,"pageTitle":pageTitle}, "");
+      }
+      else
+      {
+        loadComponent('loginform', 'Bundeling Project | Login');
+      }
       reloadFormValidation();
     }
   };
@@ -33,6 +41,7 @@ function loadComponent( componentName, pageTitle ) {
   xhttp.send();
 }
 
+// Process Registration form
 function processRegisterForm(){
   const form = document.querySelector("#register_form");
   const formData = JSON.stringify(Object.fromEntries(new FormData(form)));
@@ -47,6 +56,7 @@ function processRegisterForm(){
         });
       } else {
         let $app = document.getElementById("app");
+        $app.classList.add("align-items-center");
         $app.innerHTML = '<h3>Registration OK, transferring,..</h3>';
         setTimeout(function(){
           $app.classList.remove("align-items-center");
@@ -60,6 +70,7 @@ function processRegisterForm(){
   xhttp.send(formData);
 }
 
+// Process Login form
 function processLoginForm(){
   const form = document.querySelector("#login_form");
   const formData = JSON.stringify(Object.fromEntries(new FormData(form)));
@@ -87,20 +98,27 @@ function processLoginForm(){
   xhttp.send(formData);  
 }
 
+// Initialize Messages page
 window.pg_messages = function(){
   headerEvents();
   searchEvent( 'message' );
 }
+
+// Initialize Users page
 window.pg_users = function(){
   headerEvents();
   searchEvent( 'user' );
 }
 
+// Initialize Dashboard
 window.pg_dashboard = function(){
   headerEvents();
 }
 
+// Initialize Login form
 window.pg_loginform = function(){
+  let $app = document.getElementById("app");
+  $app.classList.add("align-items-center");
   $("#btn_register").on("click", function(){
     loadComponent('registerform', 'Bundeling Project | Register');
   });
@@ -111,6 +129,7 @@ window.pg_loginform = function(){
   });  
 }
 
+// Initialize Register form
 window.pg_registerform = function(){
   $("#btn_back").on("click", function(){
     loadComponent('loginform', 'Bundeling Project | Login');
@@ -122,6 +141,7 @@ window.pg_registerform = function(){
   });
 }
 
+// Initialize Header Events
 let headerEvents = function(){
   $("#btn_logout").off().on("click", function(){
     let xhttp = new XMLHttpRequest();
@@ -149,13 +169,14 @@ let headerEvents = function(){
   });
 }
 
-function searchEvent( type ) {
+// Search event
+function searchEvent( type ){
   let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {  
       document.getElementById('resultbox').innerHTML = this.responseText;
       let messageCount = document.getElementById('resultbox').children.length;
-      document.getElementById('message_count').innerText = messageCount;
+      document.getElementById('count_text').innerText = messageCount;
     }
   };
   $("#search_header input").on("keyup", function(){

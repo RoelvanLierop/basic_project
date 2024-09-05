@@ -2,6 +2,7 @@
     session_start();
     include( '../php/classes/csrf.php' );
 ?>
+
 <div class="col-12 col-md-4 bg-dark rounded text-white p-3">
     <h3>Login</h3>
     <form id="login_form" method="POST" action="index.php" enctype="multipart/form-data" class="needs-validation" novalidate>
@@ -20,7 +21,3 @@
         <a id="btn_register" class="btn btn-primary mt-2">Register</a>
     </form>
 </div>
-<script type="text/javascript">
-    console.log("Ready!");
-    loginform();
-</script>

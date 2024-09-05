@@ -1,7 +1,7 @@
 <?php
     session_start();
     define( 'ABSPATH', dirname( __FILE__ ) . '/src/' );
-    include( 'src/php/helpers/config.php' );
+    include( ABSPATH . 'php/helpers/config.php' );
 ?>
 <!DOCTYPE html>
 <html lang="en">

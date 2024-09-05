@@ -1,13 +1,26 @@
 <?php
 /**
- * Bundeling Project installer file
+ * @author Roel van Lierop <roel.van.lierop@gmail.com>
+ */
+
+/**
+ * Installer file
  * 
  * This installer class installs the bundeling project database information;
  */
+class Installer {
 
- class Installer {
-    private $mysqli, $words;
+    /** @var MySQLi $mysqli MySQLi instance */
+    private $mysqli;
+    
+    /** @var array $words Array with words to use when seeding the database with messages */
+    private $words;
 
+    /**
+     * Constructor
+     * 
+     * This constructor populates our dictionary with a list of word generated with ChatGPT
+     */
     public function __construct(){
         // Word dictionairy created with ChatGPT
         $this->words = array(
@@ -56,21 +69,39 @@
         );
     }
 
-    public function writeConfig() {
+    /**
+     * WriteConfig Method
+     * 
+     * Method for writing the database configuration to a JSON file
+     */
+    public function writeConfig(): void
+    {
+        // Fill our data array with the sanitized POST data
         $data = [];
         $data['database'] = [
-            'server' => htmlspecialchars(trim($_POST['dbserver'])),
-            'port' => htmlspecialchars(trim($_POST['dbport'])),
-            'name' => htmlspecialchars(trim($_POST['dbname'])),
-            'user' => htmlspecialchars(trim($_POST['dbuser'])),
-            'password' => htmlspecialchars(trim($_POST['dbpassword']))
+            'server' => htmlspecialchars( trim( $_POST['dbserver'] ) ),
+            'port' => htmlspecialchars( trim( $_POST['dbport'] ) ),
+            'name' => htmlspecialchars( trim( $_POST['dbname'] ) ),
+            'user' => htmlspecialchars( trim( $_POST['dbuser'] ) ),
+            'password' => htmlspecialchars( trim( $_POST['dbpassword'] ) )
         ];
 
+        // Write the data to our config file as a JSON
         $conf = fopen("src/config.json", "w");
         fwrite($conf, json_encode($data));
         fclose($conf);
     }
-    public function initializeDB() {
+
+    /**
+     * initializeDB Method
+     * 
+     * Creates a Database connection based on the configuration we provided during install
+     * 
+     * @uses Message::$mysqli
+     */
+    public function initializeDB(): void 
+    {
+        // Connect to MySQLi
         $this->mysqli = mysqli_connect(
             config('database.server'),
             config('database.user'), 
@@ -85,13 +116,30 @@
         }
     }
 
-    public function createTables(){
-        // Create tables here
+    /**
+     * createTables Method
+     * 
+     * Small method to streamline the creation of database tables
+     * 
+     * @uses Installer::createUserTables()
+     * @uses Installer::createMessageTables()
+     */
+    public function createTables(): void 
+    {
+        // Call table creation methods
         $this->createUserTables();
         $this->createMessageTables();
     }
 
-    private function createUserTables() {
+    /**
+     * createUserTables Method
+     * 
+     * Creates users table with indexes and UNIQUE constraints
+     * 
+     * @uses Installer::$mysqli
+     */
+    private function createUserTables(): void 
+    {
         // Create tables here
         $this->mysqli->query("CREATE TABLE IF NOT EXISTS users (
             id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -105,7 +153,15 @@
         $this->mysqli->query("CREATE INDEX searchable on users (email,display_name)");
     }
 
-    private function createMessageTables() {
+    /**
+     * createMessageTables Method
+     * 
+     * Creates messages table with indexes
+     * 
+     * @uses Installer::$mysqli
+     */
+    private function createMessageTables(): void 
+    {
         // Create tables here
         $this->mysqli->query("CREATE TABLE IF NOT EXISTS messages (
             id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -117,14 +173,23 @@
         $this->mysqli->query("CREATE INDEX messages on messages (message)");
     }
 
-    public function insertMessages(){
+    /**
+     * insertMessages Method
+     * 
+     * Seeder method which inserts 50 random messages into the messages table, based on our dictionary
+     * 
+     * @uses Installer::$mysqli
+     */
+    public function insertMessages(): void 
+    {
         // Create 50 messages
         for( $i = 0; $i < 50; $i++ ) {
             $message = [];
-            for( $j = 0; $j < 50; $j++ ) {
+            for( $j = 0; $j < (rand(30, 70)); $j++ ) {
                 $message[] = $this->words[ ( rand(1, 51) - 1 ) ];
             }
-
+            
+            // Insert newly created message into Database
             $this->mysqli->query("INSERT INTO messages SET user_id='1', message='" . implode( " ", $message ) . "'");
         }
     }
