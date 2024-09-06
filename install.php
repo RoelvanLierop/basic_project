@@ -25,8 +25,8 @@
                 chmod("install.php", 0777);
                 chmod("src/backup", 0777);
                 copy('install.php', 'src/backup/install_backup.php');
-                // commented the dangerous part for now!
-                // unlink('install.php');
+                // Dangerous part, comment if you do not want the installer removed
+                unlink('install.php');
             }
 
             header('Location: index.php');
