@@ -82,6 +82,7 @@ Some small did-you-know's about this project
 * Every single line of code in this project was typed, not copied from the internet (Because what's the fun in that?).
 * Visual Studio Code was used to make this. I love myself some PHPStorm, but since I do not own a license, I used the free version of VSC.
 * All pushes to GIT were typed in terminal as well? Even though Visual Studio Code can do it, I wanted this project to have the most barebone mindset I could come up with.
+* For styling, the Bootstrap 5 framework is used. Next with some light jQuery the only packages used in this project. This choice was made only because we needed a simple front-end fast!
 
 ## More stuff to do
 There is always more to do. that's why I created a list of thing I would like to have in this project.
