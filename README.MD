@@ -71,13 +71,13 @@ This project was created as an assignment to show my skills in "vanilla" or "pla
 
 Some small did-you-know's about this project
 
-* It cost me approx 18Hrs to build this, divided over 3 days, not including documentation.
+* It cost me approx 16Hrs to build this, divided over 3 days, not including documentation.
 * ChatGPT was used to create an array. Because I needed some "dumb" data, I decided that it was a computer's job to generate it for me. So I let ChatGPT create a dictionary of words to use for the seeding of messages.
 * I love music, every character I put on screen was done while listening to music.
-* My database skills were used while creating the database tables. Getting a fairly simple requirement from the assignment, made me think about the indexing and uniqueness of data in the database. 
-* This project did not need to be single-page, but we created the project like that anyway.
+* My database experience were used while creating the database tables. Getting a fairly simple requirement from the assignment, made me think about the indexing and uniqueness of data in the database.
+* This project did not need to be single-page, but I created the project like that anyway.
 * There is some inline PHP used? The most ancient version of creating server-side code, hated by many and most of the time a reason to remove a project entirely.
-* I considered using VueJS but didn't want 90% of my development time being peeking at documentation?
+* I considered using VueJS but didn't want 90% of my development time being peeking at documentation. That's why I opted for vanilla code.
 * PHPDoc blocks are implemented in all classes and helper methods?
 * Every single line of code in this project was typed, not copied from the internet (Because what's the fun in that?).
 * Visual Studio Code was used to make this. I love myself some PHPStorm, but since I do not own a license, I used the free version of VSC.
@@ -90,4 +90,7 @@ There is always more to do. that's why I created a list of thing I would like to
 * Models are a requirement too, for now a basic MySQL query is done after which the result is processed, but that's not a nice way to go, and should be better.
 * Automatic sanitizing of input/output, the way I did it now is ugly and should be way better.
 * Javascript could be done way shorter too, by defining all the AJAX requests as separate, I created a lot of overhead which should be eliminated.
+* Use Object-based Javascript, because we can make better use of scopes when we do.
 * Add fancy URL's to the interface, even though it is an app, we could use this for users who want to continue where they left off.
+* Add a favicon to the project.
+* Add case-insensitive search, current search only does exact matches. We can do better than that!
