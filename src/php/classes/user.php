@@ -71,7 +71,6 @@ class User {
             $this->initDatabase();
             $this->writeUser();
             $this->authenticateUser();
-            $this->mysqli->close();
         }
 
         // Otherwise return the Validation data with errors
@@ -170,7 +169,6 @@ class User {
         if($validationData['valid'] === true ){
             $this->initDatabase();
             $validationData['authenticated'] = $this->authenticateUser();
-            $this->mysqli->close();
         }
 
         // Return the validation data
@@ -281,5 +279,15 @@ class User {
 
         // return the new search constraint
         return $searchString . implode(" OR ", $searchCriteria);
+    }
+
+    /**
+     * Destructor
+     * 
+     * Let's include a destructor megic function to kill MySQLi
+     */
+    public function __destruct()
+    {
+        $this->mysqli->close();
     }
 }

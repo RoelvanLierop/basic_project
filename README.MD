@@ -90,3 +90,4 @@ There is always more to do. that's why I created a list of thing I would like to
 * Models are a requirement too, for now a basic MySQL query is done after which the result is processed, but that's not a nice way to go, and should be better.
 * Automatic sanitizing of input/output, the way I did it now is ugly and should be way better.
 * Javascript could be done way shorter too, by defining all the AJAX requests as separate, I created a lot of overhead which should be eliminated.
+* Add fancy URL's to the interface, even though it is an app, we could use this for users who want to continue where they left off.

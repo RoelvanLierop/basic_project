@@ -24,7 +24,7 @@
     </div>
     <div class="row mt-3">
         <div class="offset-1 col-7">
-            <div class="border-primary border rounded p-3">
+            <div class="border-primary border rounded p-3 mb-3">
                 <h2>Welcome</h2>
                 <p>
                     This tool was created to show some basic functionality, by using plain PHP, basic OOP, and AJAX.

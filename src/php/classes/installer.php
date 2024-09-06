@@ -193,4 +193,14 @@ class Installer {
             $this->mysqli->query("INSERT INTO messages SET user_id='1', message='" . implode( " ", $message ) . "'");
         }
     }
+
+    /**
+     * Destructor
+     * 
+     * Let's include a destructor megic function to kill MySQLi
+     */
+    public function __destruct()
+    {
+        $this->mysqli->close();
+    }
  }

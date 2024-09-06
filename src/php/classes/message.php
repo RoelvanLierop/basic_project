@@ -141,4 +141,14 @@ class Message {
         // return the new search constraint
         return $searchString . implode(" OR ", $searchCriteria);
     }
+
+    /**
+     * Destructor
+     * 
+     * Let's include a destructor megic function to kill MySQLi
+     */
+    public function __destruct()
+    {
+        $this->mysqli->close();
+    }
 }
